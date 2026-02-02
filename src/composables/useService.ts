@@ -70,12 +70,21 @@ export const useService = (domaine: string) => {
     }
 
     const value = active ? 'true' : 'false';
+
+    const cacheBuster = Date.now();
     const targetUrl = `${baseUrl}/manager/${password}/set-maintenance/${value}`;
-    const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+    const targetUrlWithCacheBuster = `${targetUrl}${targetUrl.includes('?') ? '&' : '?'}t=${cacheBuster}`;
+    const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(targetUrlWithCacheBuster)}`;
 
     try {
         actionLoading.value = true;
-        const response = await fetch(proxyUrl); // GET request par défaut
+        const response = await fetch(proxyUrl, {
+          cache: 'no-store',
+          headers: {
+              'Pragma': 'no-cache',
+              'Cache-Control': 'no-cache'
+          }
+        });
         
         if (!response.ok) throw new Error("Impossible de changer le mode maintenance");
         
