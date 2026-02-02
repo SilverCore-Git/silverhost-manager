@@ -1,0 +1,20 @@
+[
+    { 
+        "id": 1, 
+        "name": "Silvernote App",
+        "domain": "app.silvernote.fr", 
+        "mdp": "ton_mot_de_passe_ici" 
+    },
+    { 
+        "id": 3, 
+        "name": "Silvernote WWW",
+        "domain": "www.silvernote.fr", 
+        "mdp": "ton_mot_de_passe_ici" 
+    },
+    { 
+        "id": 4, 
+        "name": "Silvercore Web",
+        "domain": "www.silvercore.fr", 
+        "mdp": "ton_mot_de_passe_ici" 
+    }
+]
